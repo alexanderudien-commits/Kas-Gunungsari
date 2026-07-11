@@ -4,7 +4,7 @@ import { auth } from "../config/auth";
 export const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const session = await auth.api.getSession({
-      headers: req.headers,
+      headers: req.headers as any,
     });
     
     if (!session) {

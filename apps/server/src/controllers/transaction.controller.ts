@@ -29,7 +29,7 @@ export class TransactionController {
       const { id } = req.params;
       const updates = req.body;
       if (updates.date) updates.date = new Date(updates.date);
-      const data = await TransactionService.update(userId, id, updates);
+      const data = await TransactionService.update(userId, id as string, updates);
       if (!data) return res.status(404).json({ error: "Transaction not found" });
       res.json(data);
     } catch (error) {
@@ -39,11 +39,16 @@ export class TransactionController {
 
   static async delete(req: Request, res: Response) {
     try {
-      const userId = (req as any).user.id;
-      const { id } = req.params;
-      const data = await TransactionService.delete(userId, id);
-      if (!data) return res.status(404).json({ error: "Transaction not found" });
-      res.json({ success: true, id });
+      const userId = req.headers["x-user-id"] as string;
+      if (!userId) return res.status(401).json({ error: "Unauthorized" });
+
+      try {
+        const data = await TransactionService.delete(userId, req.params.id as string);
+        if (!data) return res.status(404).json({ error: "Transaction not found" });
+        res.json({ success: true, id: req.params.id as string });
+      } catch (error) {
+        res.status(500).json({ error: "Failed to delete transaction" });
+      }
     } catch (error) {
       res.status(500).json({ error: "Failed to delete transaction" });
     }

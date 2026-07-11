@@ -24,11 +24,11 @@ export class BudgetController {
   }
 
   static async update(req: Request, res: Response) {
+    const userId = req.headers["x-user-id"] as string;
+    if (!userId) return res.status(401).json({ error: "Unauthorized" });
+
     try {
-      const userId = (req as any).user.id;
-      const { id } = req.params;
-      const updates = req.body;
-      const data = await BudgetService.update(userId, id, updates);
+      const data = await BudgetService.update(userId, req.params.id as string, req.body);
       if (!data) return res.status(404).json({ error: "Budget not found" });
       res.json(data);
     } catch (error) {
@@ -40,7 +40,7 @@ export class BudgetController {
     try {
       const userId = (req as any).user.id;
       const { id } = req.params;
-      const data = await BudgetService.delete(userId, id);
+      const data = await BudgetService.delete(userId, id as string);
       if (!data) return res.status(404).json({ error: "Budget not found" });
       res.json({ success: true, id });
     } catch (error) {

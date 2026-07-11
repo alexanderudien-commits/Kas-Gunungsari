@@ -27,7 +27,7 @@ export class CategoryController {
     try {
       const userId = (req as any).user.id;
       const { id } = req.params;
-      const data = await CategoryService.delete(userId, id);
+      const data = await CategoryService.delete(userId, id as string);
       if (!data) return res.status(404).json({ error: "Category not found" });
       res.json({ success: true, id });
     } catch (error) {
