@@ -1,13 +1,14 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "./db";
-import * as schema from "../db/schema";
+import { db } from './db.js';
+import * as schema from '../db/schema.js';
 
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY || "dummy_key");
 
 export const auth = betterAuth({
+  baseURL: process.env.BETTER_AUTH_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
   database: drizzleAdapter(db, {
     provider: "pg",
     schema: {

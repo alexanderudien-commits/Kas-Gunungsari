@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "type": "module",
   "description": "Backend API for Gunungsari Finance Dashboard",
   "main": "dist/index.js",
   "scripts": {

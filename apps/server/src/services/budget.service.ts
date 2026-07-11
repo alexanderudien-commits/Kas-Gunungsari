@@ -1,6 +1,6 @@
 import { eq, and } from "drizzle-orm";
-import { db } from "../config/db";
-import { budgets } from "../db/schema";
+import { db } from '../config/db.js';
+import { budgets } from '../db/schema.js';
 
 export class BudgetService {
   static async getAll(userId: string) {

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { auth } from "../config/auth";
+import { auth } from '../config/auth.js';
 
 export const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {

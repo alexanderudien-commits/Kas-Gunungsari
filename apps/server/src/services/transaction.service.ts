@@ -1,6 +1,6 @@
 import { eq, desc, and, gte, lte } from "drizzle-orm";
-import { db } from "../config/db";
-import { transactions } from "../db/schema";
+import { db } from '../config/db.js';
+import { transactions } from '../db/schema.js';
 
 export class TransactionService {
   static async getAll(userId: string) {

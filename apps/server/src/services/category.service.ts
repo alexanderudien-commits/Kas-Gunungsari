@@ -1,6 +1,6 @@
 import { eq, and } from "drizzle-orm";
-import { db } from "../config/db";
-import { customCategories } from "../db/schema";
+import { db } from '../config/db.js';
+import { customCategories } from '../db/schema.js';
 
 export class CategoryService {
   static async getAll(userId: string) {
