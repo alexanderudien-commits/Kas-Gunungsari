@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Edit2, Moon, Bell, Globe, ChevronRight, Tags, RefreshCw, Download, LogOut, Plus, Check, X } from 'lucide-react';
+import { Edit2, Moon, Bell, Globe, ChevronRight, Tags, RefreshCw, Download, LogOut, Check, X } from 'lucide-react';
 import { Card } from '../components/Card';
 import { ListItem } from '../components/ListItem';
 import { Toggle } from '../components/Toggle';

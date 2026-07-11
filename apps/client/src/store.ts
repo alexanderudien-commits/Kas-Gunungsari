@@ -1,5 +1,5 @@
 import { api } from './lib/api';
-import { authClient, signIn, signUp, signOut } from './lib/auth-client';
+import { authClient, signIn, signUp, signOut, forgetPassword } from './lib/auth-client';
 import { User, Transaction, CustomCategory, Budget, DEFAULT_CATEGORIES, CATEGORY_ICONS } from './types';
 
 // =====================
@@ -8,7 +8,7 @@ import { User, Transaction, CustomCategory, Budget, DEFAULT_CATEGORIES, CATEGORY
 
 export async function requestPasswordReset(email: string): Promise<{ ok: true } | { ok: false; error: string }> {
   try {
-    const res = await authClient.forgetPassword({ email, redirectTo: `${window.location.origin}/reset-password` });
+    const res = await forgetPassword({ email, redirectTo: `${window.location.origin}/reset-password` });
     if (res.error) {
       return { ok: false, error: res.error.message || 'Gagal mengirim email reset' };
     }
