@@ -24,3 +24,4 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/budgets", budgetRoutes);
 
 export default app;
+module.exports = app;
