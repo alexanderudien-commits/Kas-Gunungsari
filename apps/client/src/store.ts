@@ -1,5 +1,5 @@
 import { api } from './lib/api';
-import { authClient, signIn, signUp, signOut, forgetPassword } from './lib/auth-client';
+import { authClient, signIn, signUp, signOut } from './lib/auth-client';
 import { User, Transaction, CustomCategory, Budget, DEFAULT_CATEGORIES, CATEGORY_ICONS } from './types';
 
 // =====================
