@@ -24,8 +24,8 @@ export class BudgetController {
   }
 
   static async update(req: Request, res: Response) {
-    const userId = req.headers["x-user-id"] as string;
-    if (!userId) return res.status(401).json({ error: "Unauthorized" });
+      const userId = (req as any).user.id;
+      if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
     try {
       const data = await BudgetService.update(userId, req.params.id as string, req.body);

@@ -8,10 +8,14 @@ import { User, Transaction, CustomCategory, Budget, DEFAULT_CATEGORIES, CATEGORY
 
 export async function requestPasswordReset(email: string): Promise<{ ok: true } | { ok: false; error: string }> {
   try {
-    const res = await forgetPassword({ email, redirectTo: `${window.location.origin}/reset-password` });
-    if (res.error) {
-      return { ok: false, error: res.error.message || 'Gagal mengirim email reset' };
-    }
+    await api.post('/auth/forget-password', { email, redirectTo: `${window.location.origin}/reset-password` }).catch(async (e) => {
+       // if forget-password returns 404, fallback to better-auth email-and-password endpoint
+       if (e.response?.status === 404) {
+           await api.post('/auth/request-password-reset', { email, redirectTo: `${window.location.origin}/reset-password` });
+       } else {
+           throw e;
+       }
+    });
     return { ok: true };
   } catch (error: any) {
     return { ok: false, error: error.message || 'Gagal mengirim email reset' };
