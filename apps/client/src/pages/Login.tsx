@@ -53,7 +53,7 @@ const Login: React.FC<LoginProps> = ({ onAuth }) => {
 
   const features = [
     { icon: BarChart2, title: 'Laporan Real-time', desc: 'Pantau arus kas harian, mingguan, dan bulanan' },
-    { icon: Shield, title: 'Data Aman', desc: 'Tersimpan di perangkat dengan enkripsi lokal' },
+    { icon: Shield, title: 'Data Aman', desc: 'Tersimpan aman di server Cloud dengan akses terenkripsi' },
     { icon: Smartphone, title: 'Mobile & Desktop', desc: 'Akses dari mana saja, kapan saja' },
   ];
 
@@ -212,7 +212,7 @@ const Login: React.FC<LoginProps> = ({ onAuth }) => {
 
         {/* Footer */}
         <div style={{ marginTop: 'var(--spacing-xl)', color: 'var(--color-outline)' }} className="text-body-sm">
-          © 2026 Desa Wisata Gunungsari
+          © 2026 KKN-PPM UGM
         </div>
       </div>
     </div>
